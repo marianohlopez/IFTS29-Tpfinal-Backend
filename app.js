@@ -51,7 +51,7 @@ passport.deserializeUser(async (id, done) => {
 
 // Redireccionamiento a las url con sus correspondientes rutas
 app.use('/', loginRouter);
-app.use('/products', isLoggedIn, productRouter);
+app.use('/products', productRouter);
 
 app.listen(3000, () => console.log('Server running on http://localhost:3000'));
 
