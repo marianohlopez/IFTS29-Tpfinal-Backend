@@ -1,6 +1,7 @@
 import express, { json, urlencoded } from "express";
 import session from "express-session";
 import passport from "passport";
+import cors from "cors";
 import { Strategy as LocalStrategy } from 'passport-local';
 import mongoose from "mongoose";
 import dotenv from "dotenv";
