@@ -10,6 +10,23 @@ export const listProducts = async (req, res) => {
   }
 };
 
+// Funcion para obtener un producto por su ID
+export const getProductById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await Product.findById(id);
+    if (!product) {
+      return res.status(404).json({ message: 'Producto no encontrado' });
+    }
+    res.json(product);
+  } catch (err) {
+    if (err.kind === 'ObjectId') {
+        return res.status(404).json({ message: 'ID de producto con formato inválido' });
+    }
+    res.status(500).send('Error fetching product');
+  }
+};
+
 // Funcion para agregar productos
 export const addProduct = async (req, res) => {
   try {
