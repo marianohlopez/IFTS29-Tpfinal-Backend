@@ -5,13 +5,17 @@ import { Strategy as LocalStrategy } from 'passport-local';
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import User from "./models/Users.js";
-import { isLoggedIn } from "./middlewares/auth.js";
 import { productRouter } from "./routes/productRoutes.js";
 import { loginRouter } from "./routes/loginRoutes.js";
 
 dotenv.config();
 
 const app = express();
+
+app.use(cors({
+  origin: '*',
+  credentials: true,
+}));
 
 app.use(json());
 
