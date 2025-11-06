@@ -13,8 +13,14 @@ dotenv.config();
 
 const app = express();
 
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://ifts-29-tpfinal-frontend.vercel.app'
+];
+
 app.use(cors({
-  origin: '*'
+  origin: allowedOrigins,
+  credentials: true,
 }));
 
 app.use(json());
