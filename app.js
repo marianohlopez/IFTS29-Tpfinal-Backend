@@ -13,13 +13,8 @@ dotenv.config();
 
 const app = express();
 
-const allowedOrigins = [
-  'http://localhost:5173',
-  'https://ifts-29-tpfinal-frontend.vercel.app'
-];
-
 app.use(cors({
-  origin: allowedOrigins,
+  origin: '*',
   credentials: true,
 }));
 
@@ -59,11 +54,11 @@ passport.deserializeUser(async (id, done) => {
   done(null, user);
 });
 
-app.use('/uploads', express.static('uploads'));
-
 // Redireccionamiento a las url con sus correspondientes rutas
 app.use('/', loginRouter);
 app.use('/products', productRouter);
+
+app.use('/uploads', express.static('uploads'));
 
 app.listen(3000, () => console.log('Server running on http://localhost:3000'));
 
