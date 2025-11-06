@@ -58,7 +58,5 @@ passport.deserializeUser(async (id, done) => {
 app.use('/', loginRouter);
 app.use('/products', productRouter);
 
-app.use('/uploads', express.static('uploads'));
-
 app.listen(3000, () => console.log('Server running on http://localhost:3000'));
 
