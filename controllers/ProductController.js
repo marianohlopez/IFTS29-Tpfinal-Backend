@@ -13,14 +13,27 @@ export const listProducts = async (req, res) => {
 // Funcion para agregar productos
 export const addProduct = async (req, res) => {
   try {
-    const products = new Product(req.body)
-    const savedProduct = await products.save();
+    const imagePaths = req.files?.map(
+      (file) => `${req.protocol}://${req.get('host')}/${file.path.replace(/\\/g, '/')}`
+    );
+
+    const newProduct = new Product({
+      name: req.body.name,
+      price: req.body.price,
+      description: req.body.description,
+      stock: req.body.stock,
+      images: imagePaths || [],
+    });
+
+    const savedProduct = await newProduct.save();
+
     res.json({
-      message: 'Producto guardado correctamente',
-      product: savedProduct
+      message: '✅ Producto guardado correctamente',
+      product: savedProduct,
     });
   } catch (err) {
-    res.status(500).send('Error adding product');
+    console.error('Error al agregar producto:', err);
+    res.status(500).json({ message: '❌ Error al agregar producto' });
   }
 };
 

@@ -54,6 +54,8 @@ passport.deserializeUser(async (id, done) => {
   done(null, user);
 });
 
+app.use('/uploads', express.static('uploads'));
+
 // Redireccionamiento a las url con sus correspondientes rutas
 app.use('/', loginRouter);
 app.use('/products', productRouter);
