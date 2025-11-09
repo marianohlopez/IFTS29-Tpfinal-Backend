@@ -9,6 +9,7 @@ import User from "./models/Users.js";
 import { productRouter } from "./routes/productRoutes.js";
 import { loginRouter } from "./routes/loginRoutes.js";
 
+
 dotenv.config();
 
 const app = express();
@@ -65,3 +66,4 @@ app.use('/products', productRouter);
 
 app.listen(3000, () => console.log('Server running on http://localhost:3000'));
 
+export default app;
